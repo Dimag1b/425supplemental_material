@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+    		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    		<meta name="viewport" content="width=device-width, initial-scale=1">
+    		<meta name="description" content="">
+    		<meta name="author" content="">
+
+		<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
+		<!-- <link href="http://getbootstrap.com/examples/cover/cover.css" rel="stylesheet"> -->
+ 		<link href="http://getbootstrap.com/examples/dashboard/dashboard.css" rel="stylesheet">
+	</head>
+	<body>
+
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">The Little Black Book!</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+
+                </ul>
+                <form class="navbar-form navbar-right">
+                    <input type="text" class="form-control bookid-text getbook" placeholder="Enter Book ID">
+                    <button class="btn btn-primary get-book getbook">Login</button>
+                    <button class="btn btn-warning new-book">New LBB</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 col-md-2 sidebar">
+                <!-- This is where the people go-->
+            </div>
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                <h1 class="page-header"></h1>
+
+                <div class="row placeholder">
+                    <div class="col-xs-6 col-sm-3 placeholder">
+                        <input type="text" placeholder="Person's Full Name" class="fullname" required><br>
+                        <input type="tel" placeholder="Phone Number" class="tel" required><br>
+                        <hr>
+                        <h4>Select Rating</h4>
+                        <input class="sliderating" required
+                               data-max="11"
+                               data-min="1"
+                               data-fgColor="#66CC66"
+                               data-angleOffset="-125"
+                               data-step=.5
+                               data-angleArc=250 data-displayInput=true data-displayPrevioius="true">
+                    </div>
+                </div>
+                <div class="row placeholder">
+                    <div class="col-xs-6 col-sm-3 placeholder">
+                        <button class="btn btn-success btn-block add-person">Submit!</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal Box -->
+    <div id="MyModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="fullname"></div>
+                <div class="phonenumber"></div>
+                <div class="rating"></div>
+                <div class="geocoords"></div>
+            </div>
+        </div>
+    </div>
+
+
+	<!-- Scripts go below this line -->
+	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="http://anthonyterrien.com/js/jquery.knob.js"></script>
+	<!-- End Script Imports -->
+ <script>
+     var serverURL = '/server.php'
+     $('.sliderating').knob()
+
+     $('.add-person').on('click',function(){
+         var fname = $('.fullname').val()
+         var tel = $('.tel').val()
+         var rating = $('.sliderating').val()
+         var jsonData = {}
+
+         jsonData['stored_fullname'] = fname
+         jsonData['stored_phone'] = tel
+         jsonData['stored_rating'] = rating
+         jsonData['username'] = "Art"
+         jsonData['stored_long'] = ""
+         jsonData['stored_lat'] = ""
+
+         var jsonized = JSON.stringify(jsonData)
+
+         $.get(serverURL,{'jsonData':jsonized,'api_type':'add_record'},function(data){
+             console.log(data)
+         })
+
+
+     })
+
+		
+	</script>
+	
+	</body>
+</html>
