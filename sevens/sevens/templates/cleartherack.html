@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+
+<form action="{% url 'cleartherack' %}" method="POST">
+	{% csrf_token %}
+
+	{{ form }}
+
+	<input type="submit" value="Clear The Rack!!" data-iconpos="top" data-icon="alert">
+</form>
+{% endblock %}

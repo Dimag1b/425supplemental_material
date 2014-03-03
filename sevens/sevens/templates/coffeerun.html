@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+<button data-role="button" id="com_trip_btn">Log Free Coffee!</button>
+{% endblock %}
+
+
+{% block extra-scripts %}
+<script>
+$("#com_trip_btn").bind('vclick',function(){
+	
+	var com  = true
+	$.post("{% url 'coffee' %}",function(data){
+		alert("Mr. Server Says: " + data)
+	})
+})
+</script>
+{% endblock %}

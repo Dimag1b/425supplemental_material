@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+
+{% block body %}
+
+<table data-role='table' id="spending" data-mode="columntoggle" class="ui-responsive table-stroke ui-table ui-table-columntoggle table-stripe ui-body-d">
+	<thead>
+		<tr>
+			<th>Entity</th>
+			<th data-priority="1" class="ui-table-priority-1">7 Days</th>
+			<th data-priority="3" class="ui-table-priority-3">30 Days</th>
+			<th data-priority="4" class="ui-table-priority-4">365 Days</th>
+			<th data-priority="5" class="ui-table-priority-5">All Time</th>
+		</tr> 
+	</thead>
+	<tbody>
+		<tr>
+			<td>You</td>
+			<td>${{user_spent_seven.amt__sum}}</td>
+			<td>${{user_spent_thirty.amt__sum}}</td>
+			<td>${{user_spent_year.amt__sum}}</td>
+			<td>${{ user_spent_all.amt__sum }}</td>
+		</tr>
+		<tr>
+			<td>All</td>
+			<td>${{all_spend_seven.amt__sum}}</td>
+			<td>${{all_spend_thirty.amt__sum}}</td>
+			<td>${{all_spend_year.amt__sum}}</td>
+			<td>${{ all_spend_all.amt__sum }}</td>
+		</tr>
+		<tr>
+			<td>Average</td>
+			<td>${{ avg_spending_7 }}</td>
+			<td>${{ avg_spending_30 }}</td>
+			<td>${{ avg_spending_365 }}</td>
+			<td>${{ avg_spending_all }}</td>
+	</tbody>
+	<tfoot>
+		<tr>
+			<th colspan="5" style="text-align:center">Spending Data</th>
+		</tr>
+	</tfoot>
+</table>
+
+
+
+<table data-role='table' id="trips" data-mode="columntoggle" class="ui-responsive table-stroke ui-table ui-table-columntoggle table-stripe ui-body-d">
+	<thead>
+		<tr>
+			<th>Entity</th>
+			<th data-priority="1" class="ui-table-priority-1">7 Days</th>
+			<th data-priority="3" class="ui-table-priority-3">30 Days</th>
+			<th data-priority="4" class="ui-table-priority-4">365 Days</th>
+			<th data-priority="5" class="ui-table-priority-5">All Time</th>
+		</tr> 
+	</thead>
+	<tbody>
+		<tr>
+			<td>You</td>
+			<td>{{user_trips_seven }}</td>
+			<td>{{user_trips_thirty}}</td>
+			<td>{{user_trips_year}}</td>
+			<td>{{ user_trips_all }}</td>
+		</tr>
+		<tr>
+			<td>All</td>
+			<td>{{all_trips_seven}}</td>
+			<td>{{all_trips_thirty}}</td>
+			<td>{{all_trips_year}}</td>
+			<td>{{all_trips_all }}</td>
+		</tr>
+
+	</tbody>
+		<tfoot>
+		<tr>
+			<th colspan="5" style="text-align:center">Trips Taken</th>
+		</tr>
+	</tfoot>
+</table>
+
+<table data-role='table' id="walkingdistance" data-mode="columntoggle" class="ui-responsive table-stroke ui-table ui-table-columntoggle table-stripe ui-body-d">
+	<thead>
+		<tr>
+			<th>Entity</th>
+			<th data-priority="1" class="ui-table-priority-1">Feet</th>
+			<th data-priority="3" class="ui-table-priority-3">Yards</th>
+			<th data-priority="4" class="ui-table-priority-4">Miles</th>
+			<th data-priority="5" class="ui-table-priority-5">% To The Moon</th>
+		</tr> 
+	</thead>
+	<tbody>
+		<tr>
+			<td>You</td>
+			<td>{{ user_feet_walked_total }}</td>
+			<td>{{ user_yards }}</td>
+			<td>{{ user_miles }}</td>
+			<td>{{ user_to_moon }}%</td>
+		</tr>
+		<tr>
+			<td>All</td>
+			<td>{{all_feet_walked_total}}</td>
+			<td>{{ all_yards }}</td>
+			<td>{{ all_miles }}</td>
+			<td>{{ all_to_moon }}%</td>
+		</tr>
+
+	</tbody>
+		<tfoot>
+		<tr>
+			<th colspan="5" style="text-align:center">Feet Walked</th>
+		</tr>
+	</tfoot>
+</table>
+
+<table data-role='table' id="special" data-mode="columntoggle" class="ui-responsive table-stroke ui-table ui-table-columntoggle table-stripe ui-body-d">
+	<thead>
+		<tr>
+			<th>Entity</th>
+			<th data-priority="1" class="ui-table-priority-1">Racks Cleared</th>
+			<th data-priority="3" class="ui-table-priority-3">Camaraderie Trips</th>
+			<th data-priority="4" class="ui-table-priority-4">Free Coffees</th>
+		</tr> 
+	</thead>
+	<tbody>
+		<tr>
+			<td>You</td>
+			<td>{{ user_rack_clears }}</td>
+			<td>{{ user_com_trips }}</td>
+			<td>{{ user_free_coffee }}</td>
+		</tr>
+		<tr>
+			<td>All</td>
+			<td>{{all_rackclears }}</td>
+			<td>{{ all_com_trips }}</td>
+			<td>{{ all_free_coffee }}</td>
+		</tr>
+
+	</tbody>
+		<tfoot>
+		<tr>
+			<th colspan="4" style="text-align:center">Special Stats</th>
+		</tr>
+	</tfoot>
+</table>
+
+{% endblock %}

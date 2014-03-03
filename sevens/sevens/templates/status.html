@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block body %}
+<div data-role="collapsible">
+   <h3>Helpful Info</h3>
+   <p>The stock status tells other 7-11 goers what the stock level of their favorite item is currently.
+   	For example, if the 7-11 were out of coffee, you mark it a zero dude. If it's looking a little low,
+   	a three or a four might be better.
+   </p>
+   <p>
+   	Basically, this is just a fancy way to help out your fellow CMU people and let everyone know if they're going to have a bad time getting taquitos, coffee, or donuts.
+   </p>
+</div>
+
+<form action="{% url 'status' %}" method="POST">
+	{% csrf_token %}
+
+	{{ form }}
+
+	<input type="submit" value="Update Item Status!">
+</form>
+{% endblock %}

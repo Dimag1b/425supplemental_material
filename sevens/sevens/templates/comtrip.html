@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<button data-role="button" id="com_trip_btn">Camaraderie Trip!</button>
+{% endblock %}
+
+
+{% block extra-scripts %}
+<script>
+$("#com_trip_btn").bind('vclick',function(){
+	console.log("In function...")
+	var user = "{{ user }}"
+	var com  = true
+	$.post("{% url 'comtrip' %}",{username:"{{ user }}",triptype:"com"},function(data){
+		alert("Mr. Server Says: " + data)
+	})
+})
+</script>
+{% endblock %}

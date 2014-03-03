@@ -1,0 +1,17 @@
+Django==1.5.1
+South==0.8.1
+amqp==1.0.11
+anyjson==0.3.3
+arrow==0.3.3
+hg+https://hg.techops.cmich.edu/django-ad-auth
+hg+https://hg.techops.cmich.edu/django_middleware
+billiard==2.7.3.28
+celery==3.0.19
+kombu==2.5.10
+psycopg2==2.5
+python-dateutil==2.1
+redis==2.7.6
+simplejson==3.3.0
+six==1.3.0
+wsgiref==0.1.2
+gunicorn==0.14.3
